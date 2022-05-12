@@ -65,7 +65,7 @@ write.table(as.data.frame(resOrdered),file="OIS/OIS_SEn_T/OIS_RNARiboTE.txt",row
 
 export PATH="/home/orsalia/Desktop/Bioinformatics/bedtools_dir/:$PATH" ### point bedtools_dir
 
-~/Desktop/Bioinformatics/RiboTaper_v1.3/./P_sites_RNA_sites_calc2.bash 29,30 12,12 /usr/bin 
+~/Desktop/Bioinformatics/RiboTaper_v1.3/Version_1.3/script/./P_sites_RNA_sites_calc.bash 29,30 12,12 /usr/bin 
 
 ############ coverage of the Psites per transcript 
 
@@ -109,8 +109,13 @@ intersectBed -a stalling_exons_ccdsort.stall.Plr2fatobed.bed -b stalling_exons_c
 #main script to be sused in R
 #this script uses the Psite coverage from example above i.e
 #chr17	75779046	75779174	ENST00000254810.8cds20chr1775779047r	0	-	1 0 0 1 0 0 1 0 3 0 3 0 0 10 1 0 0 0 0 1 0 0 2 0 0 0 0 3 2 0 2 1 0 1 3 0 1 6 0 0 0 1 1 0 1 1 1 1 3 6 4 2 1 0 0 1 0 0 11 1 0 5 0 0 0 0 0 0 0 0 0 1 0 2 0 1 2 4 6 0 0 0 0 0 0 3 0 3 6 0 0 3 0 1 1 1 0 6 5 15 20 0 12 21 1 1 2 0 0 12 1 7 3 11 4 36 1 40 21 12 10 70 4 6 12 1 9 71
+######################################################################################################ORF finding
+############## filter 5UTR ORFs
+perl 3nclfind_callR2ccc2.pl P_sites_all_exons_5UTRF.bed test3ncl 3nclperiodic 3nclmultiframes
+mv 3nclperiodic.txt 3nclperiodic5UTR
+mv 3nclmultiframes.txt 3nclmultiframes5UTR
 
-################################################################################# R script
+################################################################################# R script for ORF finding
 library("multitaper")
 library("purrr")
 
@@ -173,7 +178,7 @@ pval<- ftestvect(dat,24,12)
 #detach(package:purrr)
 write.csv(multitaperobject$freq,file = "MyData1.csv") 
 write.csv(multitaperobject$spec,file = "MyData2.csv")
-################################################################################# R script
+############################################################################################################################################################################
 
 
 
