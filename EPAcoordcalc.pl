@@ -7,9 +7,9 @@ my $inputfile2=$ARGV[1];
 
 open (INPUT_FILE,$inputfile);
 
-open (file2,">$inputfile2.E2.bed") or die "$!\n";
-open (file2c,">$inputfile2.P2.bed") or die "$!\n";
-open (file2b,">$inputfile2.A2.bed") or die "$!\n";
+open (file2,">$inputfile2.E.bed") or die "$!\n";
+open (file2c,">$inputfile2.P.bed") or die "$!\n";
+open (file2b,">$inputfile2.A.bed") or die "$!\n";
 
 my %matrix1;
 my %matrix2;
